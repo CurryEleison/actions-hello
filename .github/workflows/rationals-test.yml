@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - 'rational-numbers/**/*'
+      - '.github/workflows/rationals-test.yml'
   # pull_request:
   #   branches: [ $default-branch ]
 
