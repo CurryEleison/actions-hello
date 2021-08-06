@@ -2,10 +2,10 @@
 
 name: Python testing
 
-on:
-  push:
-    paths:
-      - 'rational-numbers/**/*'
+on: push
+  # push:
+  #   paths:
+  #     - 'rational-numbers/**/*'
   # pull_request:
   #   branches: [ $default-branch ]
 
