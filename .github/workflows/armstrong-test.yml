@@ -1,0 +1,42 @@
+# This workflow tests the python apps
+
+name: Python testing
+
+on:
+  push:
+    # paths:
+    #   - 'armstrong-numbers/**/*'
+    #   - '.github/workflows/armstrong-test.yml'
+  pull_request:
+    paths:
+      - 'armstrong-numbers/**/*'
+      - '.github/workflows/armstrong-test.yml'
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./armstrong-numbers
+    steps:
+      - name: Setup checkout
+        uses: actions/checkout@v2
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies and set up virtual env
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
+      - name: Check dependencies for security issues
+        run: |
+          pipenv check
+      - name: Linting
+        run: |
+          pipenv run pylint rational_numbers.py
+      - name: Testing
+        run: |
+          pipenv run pytest
