@@ -3,15 +3,15 @@
 name: Python testing
 
 on:
-  # push:
-    # paths:
-    #   - 'armstrong-numbers/**/*'
-    #   - '.github/workflows/armstrong-test.yml'
-  pull_request:
+  push:
     paths:
       - 'armstrong-numbers/**/*'
       - '.github/workflows/armstrong-test.yml'
-    branches: [ $default-branch ]
+  # pull_request:
+  #   paths:
+  #     - 'armstrong-numbers/**/*'
+  #     - '.github/workflows/armstrong-test.yml'
+  #   branches: [ $default-branch ]
 
 jobs:
   build:
