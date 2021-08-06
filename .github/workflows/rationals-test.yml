@@ -18,7 +18,8 @@ jobs:
         uses: action/setup-python@v2
         with:
           python-version: '3.9'
-      - run |
+      - name: Dependencies installation
+        run |
         python -m pip install --upgrade pip
         pip install pipenv pytest
       # - name: Install dependencies and set up virtual env
