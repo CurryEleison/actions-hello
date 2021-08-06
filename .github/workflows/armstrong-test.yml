@@ -3,7 +3,7 @@
 name: Python testing
 
 on:
-  push:
+  # push:
     # paths:
     #   - 'armstrong-numbers/**/*'
     #   - '.github/workflows/armstrong-test.yml'
