@@ -1,22 +1,24 @@
+"""Working with rationals"""
 from __future__ import division
 
 
 class Rational:
+    """Implementation of rational numbers"""
     def __init__(self, numer, denom):
         cmn = Rational._gcd(numer, denom)
         smaller_numer = numer // cmn
         smaller_denom = denom // cmn
         sign_correct = -1 if smaller_denom < 0 else 1
-        
+
         self.numer = sign_correct * smaller_numer
         self.denom = sign_correct * smaller_denom
 
     @staticmethod
     def _gcd(a, b):
-        if (b == 0):
+        # pylint: disable=invalid-name
+        if b == 0:
             return a
-        else:
-            return Rational._gcd(b, a%b)
+        return Rational._gcd(b, a%b)
 
 
     def __eq__(self, other):
