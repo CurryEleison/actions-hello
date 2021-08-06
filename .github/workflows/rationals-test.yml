@@ -1,8 +1,9 @@
 # This workflow tests the python apps
 
 name: Python testing
-  on:
-    pull-request: [ $default-branch ]
+
+on:
+  pull-request: [ $default-branch ]
 
 
 jobs:
