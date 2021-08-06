@@ -3,8 +3,10 @@
 name: Python testing
 
 on:
-  pull_request: [ $default-branch ]
-
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 
 jobs:
   build:
