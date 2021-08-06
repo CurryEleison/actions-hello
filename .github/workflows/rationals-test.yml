@@ -12,6 +12,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./rational-numbers
     steps:
       - name: Setup checkout
         uses: actions/checkout@v2
