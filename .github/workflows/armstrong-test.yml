@@ -36,7 +36,7 @@ jobs:
           pipenv check
       - name: Linting
         run: |
-          pipenv run pylint rational_numbers.py
+          pipenv run pylint armstrong_numbers.py
       - name: Testing
         run: |
           pipenv run pytest
