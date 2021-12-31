@@ -26,4 +26,4 @@ jobs:
       - name: Current branch name
         run: echo running on branch ${GITHUB_REF##*/}
       - name: Default branch name
-        run: echo default branch is $(PAGER='cat' gh repo view --json defaultBranchRef -q '.defaultBranchRef.name')
+        run: echo default branch is $(git remote show origin | awk '/HEAD branch/ {print $NF}')
