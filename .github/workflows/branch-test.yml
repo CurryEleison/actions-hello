@@ -23,7 +23,15 @@ jobs:
     steps:
       - name: Setup checkout
         uses: actions/checkout@v2
+      - name: Branch information
+        id: branchinfo
+        run: |
+          echo "::set-output name=defaultbranch::$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
+          echo "::set-output name=currentbranch::${GITHUB_REF##*/}"
+          echo "::set-output name=isdefault::"${{ steps.branchinfo.outputs.currentbranch == steps.branchinfo.outputs.defaultbranch }}
       - name: Current branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo running on branch ${{ steps.branchinfo.outputs.currentbranch }}
       - name: Default branch name
-        run: echo default branch is $(git remote show origin | awk '/HEAD branch/ {print $NF}')
+        run: echo default branch is ${{ steps.branchinfo.outputs.defaultbranch }}
+      - name: Is default branch?
+        run: echo is default ${{ steps.branchinfo.outputs.currentbranch == steps.branchinfo.outputs.defaultbranch }}
