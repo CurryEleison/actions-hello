@@ -34,4 +34,4 @@ jobs:
       - name: Default branch name
         run: echo default branch is ${{ steps.branchinfo.outputs.defaultbranch }}
       - name: Is default branch?
-        run: echo is default ${{ steps.branchinfo.outputs.currentbranch == steps.branchinfo.outputs.defaultbranch }}
+        run: echo is default ${{ steps.branchinfo.outputs.isdefault }}
