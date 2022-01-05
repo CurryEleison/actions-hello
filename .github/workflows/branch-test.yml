@@ -28,10 +28,13 @@ jobs:
         run: |
           echo "::set-output name=defaultbranch::$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
           echo "::set-output name=currentbranch::${GITHUB_REF##*/}"
-          echo "::set-output name=isdefault::"${{ steps.branchinfo.outputs.currentbranch == steps.branchinfo.outputs.defaultbranch }}
+          echo "::set-output name=isdefault::$([[ ${GITHUB_REF##*/} == $(git remote show origin | awk '/HEAD branch/ {print $NF}') ]] && echo true || echo false)"
       - name: Current branch name
         run: echo running on branch ${{ steps.branchinfo.outputs.currentbranch }}
       - name: Default branch name
         run: echo default branch is ${{ steps.branchinfo.outputs.defaultbranch }}
       - name: Is default branch?
-        run: echo is default ${{ steps.branchinfo.outputs.currentbranch == steps.branchinfo.outputs.defaultbranch }}
+        run: echo is default ${{ steps.branchinfo.outputs.isdefault }}
+      - name: Only do this step on default branch
+        if: ${{ steps.branchinfo.outputs.isdefault == 'true' }}
+        run: echo "Only executing this step on default branch"
