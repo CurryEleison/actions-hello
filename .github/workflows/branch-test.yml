@@ -36,5 +36,5 @@ jobs:
       - name: Is default branch?
         run: echo is default ${{ steps.branchinfo.outputs.isdefault }}
       - name: Only do this step on default branch
-        if: ${{ steps.branchinfo.outputs.isdefault }}
+        if: ${{ steps.branchinfo.outputs.isdefault == 'true' }}
         run: echo "Only executing this step on default branch"
