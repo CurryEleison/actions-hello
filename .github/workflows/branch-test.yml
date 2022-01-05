@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "::set-output name=defaultbranch::$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
           echo "::set-output name=currentbranch::${GITHUB_REF##*/}"
-          echo "::set-output name=isdefault::"${{ "$(git remote show origin | awk '/HEAD branch/ {print $NF}')" == "${GITHUB_REF##*/}" }}
+          echo "::set-output name=isdefault::$([[ ${GITHUB_REF##*/} == $(git remote show origin | awk '/HEAD branch/ {print $NF}') ]] && echo true || echo false)"
       - name: Current branch name
         run: echo running on branch ${{ steps.branchinfo.outputs.currentbranch }}
       - name: Default branch name
