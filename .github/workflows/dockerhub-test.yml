@@ -1,10 +1,18 @@
 name: Hello from busybox build and push
 
-on: push
+on: 
+  push:
+    paths:
+      - 'dockerhub/**/*'
+      - '.github/workflows/dockerhub-test.yml'
+
 
 jobs:
   imagebuild:
     name: Build hello/busybox container image and push if on master branch
+    defaults:
+      run:
+        working-directory: ./dockerhub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
